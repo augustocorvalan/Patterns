@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+        <script src="../utils.js"></script>
+        <script src="../Elements.js"></script>
+        <script src="../Symmetries.js"></script>
+        <script src="../rotationSymmetry01.js"></script>
+        <script type="text/javascript">
+            const CANVAS_WIDTH = 2000;
+            const CANVAS_HEIGHT = 2000;
+
+
+            const PADDING_Y = 100;
+            const PADDING_X = 100;
+
+            const SPACING_X = randomNum(50, 100)
+            const SPACING_Y = randomNum(50, 100)
+            const ROTATION = randomNum(0, 360)
+
+
+            const RADIUS = randomNum(1, 60);
+            const ORDER = randomNum(2, 12); 
+
+            const ELEMENT_HEIGHT = 44;
+
+            const CIRCLE_DIAMETER = RADIUS * 2 + ELEMENT_HEIGHT * 2 + SPACING_X * 2
+
+            function setup() {
+                createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+                textSize(60)
+
+                noLoop()
+                angleMode(DEGREES)
+                rectMode(CENTER)
+            }
+
+            function draw() {
+                const Element = new TextElement('f')
+                const RotTestSym = new RotationSymmetry({
+                    Element,
+                    elementHeight: ELEMENT_HEIGHT,
+                    startX: PADDING_X,
+                    startY: PADDING_Y,
+                    order: ORDER,
+                    rotation: ROTATION,
+                    radius: RADIUS
+                })
+                const RotatedPlanarSymmetry = new PlanarSymmetry({
+                    Element: RotTestSym,
+                    maxX: CANVAS_WIDTH,
+                    maxY: CANVAS_HEIGHT,
+                    startX: PADDING_X,
+                    startY: PADDING_Y,
+                    rotation: ROTATION,
+                    spacingX: CIRCLE_DIAMETER,
+                    spacingY: CIRCLE_DIAMETER
+                })
+                RotatedPlanarSymmetry.render()
+            }
+        </script>
+
+    </head>
+    <body>
+
+    </body>
+</html>

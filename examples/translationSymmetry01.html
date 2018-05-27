@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+        <script src="../utils.js"></script>
+        <script src="../Elements.js"></script>
+        <script src="../Symmetries.js"></script>
+        <script src="../translationSymmetry01.js"></script>
+        <script type="text/javascript">
+            const CANVAS_WIDTH = 1000;
+            const CANVAS_HEIGHT = 1000;
+
+            const PADDING_Y = 50;
+            const PADDING_X = 10;
+
+            const SPACING_X = randomNum(50, 100)
+            const SPACING_Y = randomNum(50, 100)
+            const ROTATION = randomNum(0, 360)
+
+            function setup() {
+                createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+                textSize(60)
+
+                noLoop()
+                angleMode(DEGREES)
+                rectMode(CENTER)
+            }
+
+            function draw() {
+                const Element = new TextElement('DA')
+
+                const TextPlanarSymmetry = new PlanarSymmetry({
+                    Element,
+                    maxX: CANVAS_WIDTH,
+                    maxY: CANVAS_HEIGHT,
+                    startX: PADDING_X,
+                    startY: PADDING_Y,
+                    rotation: ROTATION,
+                    spacingX: SPACING_X,
+                    spacingY: SPACING_Y
+                })
+                TextPlanarSymmetry.render()
+            }
+        </script>
+
+        <style>
+         
+        </style>
+    </head>
+    <body>
+
+    </body>
+</html>
