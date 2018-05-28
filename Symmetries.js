@@ -1,9 +1,3 @@
-class Renderable {
-    constructor(initState) {
-        this.state = initState;
-    }
-}
-
 class TranslationSymmetry extends Renderable {
     render(newState) {
         this.state = {...this.state, ...newState};
