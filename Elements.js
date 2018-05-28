@@ -11,3 +11,18 @@ class TextElement {
         pop()
     }
 }
+
+class EllipseElement extends Renderable {
+    render(newState) {
+        this.state = {...this.state, ...newState};
+
+        const {
+            startX = 0,
+            startY = 0,
+            width = 10,
+            height
+        } = this.state;
+
+        ellipse(startX, startY, width, height)
+    }
+}
