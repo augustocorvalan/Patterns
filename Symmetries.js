@@ -78,7 +78,6 @@ class ReflectionSymmetry extends Renderable {
             startY,
             rotation
         });
-        console.log(spacing)
 
         push()
         // why need to add this 10?
