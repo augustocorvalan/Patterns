@@ -6,55 +6,63 @@
         <script src="../Elements.js"></script>
         <script src="../Symmetries.js"></script>
         <script type="text/javascript">
-            const CANVAS_WIDTH = 2000;
-            const CANVAS_HEIGHT = 2000;
+         const CANVAS_WIDTH = 2000;
+         const CANVAS_HEIGHT = 2000;
 
-            const SWATCH_HEIGHT = 100;
-            const SWATCH_WIDTH = 100
+         const SWATCH_HEIGHT = 100;
+         const SWATCH_WIDTH = 100
 
-            const PADDING_Y = 30;
-            const PADDING_X = 30;
+         const PADDING_Y = 30;
+         const PADDING_X = 30;
 
-            const ELEMENT_HEIGHT = 20;
-            const ELEMENT_WIDTH = 20;
+         const ELEMENT_HEIGHT = 20;
+         const ELEMENT_WIDTH = 20;
 
-            function setup() {
-                createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
-                textSize(60)
+         const PALETTE = [
+            "#899DA4", "#C93312", "#FAEFD1", "#DC863B",
+            "#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089",
+         ];
 
-                noLoop()
-                angleMode(DEGREES)
-                rectMode(CENTER)
-            }
+         function setup() {
+             createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+             textSize(60)
 
-            function draw() {
-                background(255)
-                stroke(0)
-                fill(0)
-                var elements = [
-                    new RectElement({ width: ELEMENT_WIDTH, height: ELEMENT_HEIGHT }),
-                    new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 5 }),
-                    new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 6 }),
-                    new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 7 }),
-                    new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 8 }),
-                    new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 9 }),
-                    new EllipseElement({ width: ELEMENT_WIDTH, height: ELEMENT_HEIGHT }),
-                ];
-                translate(PADDING_X, PADDING_Y)
+             noLoop()
+             angleMode(DEGREES)
+             rectMode(CENTER)
+         }
 
-                for (var i = 0; i < elements.length; i++) {
-                    const ReflectedPlanarSym = new PlanarSymmetry({
-                        Element: elements[i],
-                        maxX: SWATCH_WIDTH,
-                        maxY: SWATCH_HEIGHT,
-                        startX: i * (SWATCH_WIDTH + PADDING_X),
-                        startY: PADDING_Y,
-                        spacingX: PADDING_X,
-                        spacingY: PADDING_Y
-                    });
-                    ReflectedPlanarSym.render();
-                }
-            }
+         function draw() {
+             background(255)
+             stroke(0)
+             fill(0)
+             var elements = [
+                 new RectElement({ width: ELEMENT_WIDTH, height: ELEMENT_HEIGHT }),
+                 new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 5 }),
+                 new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 6 }),
+                 new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 7 }),
+                 new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 8 }),
+                 new PolygonElement({ radius: ELEMENT_HEIGHT, sides: 9 }),
+                 new EllipseElement({ width: ELEMENT_WIDTH, height: ELEMENT_HEIGHT }),
+             ];
+             translate(PADDING_X, PADDING_Y)
+
+             for (var i = 0; i < elements.length; i++) {
+                 const ReflectedPlanarSym = new PlanarSymmetry({
+                     Element: elements[i],
+                     maxX: SWATCH_WIDTH,
+                     maxY: SWATCH_HEIGHT,
+                     startX: i * (SWATCH_WIDTH + PADDING_X),
+                     startY: PADDING_Y,
+                     spacingX: PADDING_X,
+                     spacingY: PADDING_Y,
+                     willRender() {
+                         fill(PALETTE[i])
+                     }
+                 });
+                 ReflectedPlanarSym.render();
+             }
+         }
         </script>
     </head>
     <body>

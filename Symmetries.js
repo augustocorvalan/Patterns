@@ -1,6 +1,7 @@
 class TranslationSymmetry extends Renderable {
     render(newState) {
-        this.state = {...this.state, ...newState};
+        this.setRenderState(newState);
+        
         const {
             Element,
             max,
@@ -30,7 +31,7 @@ class TranslationSymmetry extends Renderable {
 
 class PlanarSymmetry extends Renderable {
     render(newState) {
-        this.state = {...this.state, ...newState};
+        this.setRenderState(newState);
         const {
             Element,
             maxX,
@@ -64,7 +65,7 @@ class PlanarSymmetry extends Renderable {
 
 class ReflectionSymmetry extends Renderable {
     render(newState) {
-        this.state = {...this.state, ...newState};
+        this.setRenderState(newState);
         const {
             Element,
             startX,
@@ -94,7 +95,7 @@ class ReflectionSymmetry extends Renderable {
 
 class RotationSymmetry extends Renderable {
     render(newState) {
-        this.state = {...this.state, ...newState};
+        this.setRenderState(newState);
         const {
             Element,
             startX,
@@ -114,7 +115,7 @@ class RotationSymmetry extends Renderable {
                 startY: 0,
                 rotation
             })
-            translate(radius*2, -elementHeight)
+            translate(radius * 2, -elementHeight)
             rotate(angle)
         }
         pop()
